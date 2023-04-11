@@ -4,7 +4,6 @@ import Home from "./components/Home";
 import About from "./components/About";
 import { Routes, Route } from 'react-router-dom';
 import NoteState from "./Context/notes/NoteState";
-
 function App() {
 
   return (
