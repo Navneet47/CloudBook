@@ -15,16 +15,17 @@ router.post('/createuser', [
      body('email', 'Enter a valid email').isEmail(),
      body('password', 'Password must be atleast 8 characters').isLength({ min: 8 })
 ], async (req, res) => {
+     let success = false;
      // IF there are errors return bad request and errors;
      const errors = validationResult(req);
      if (!errors.isEmpty()) {
-          return res.status(400).json({ errors: errors.array() });
+          return res.status(400).json({ success, errors: errors.array() });
      }
      // Check wether user exits or not with same email
      try {
           let user = await User.findOne({ email: req.body.email });
           if (user) {
-               return res.status(400).json({ error: "Sorry a user with this email already exists" });
+               return res.status(400).json({ success, error: "Sorry a user with this email already exists" });
           }
           const salt = await bcrypt.genSalt(10);
           const secPass = await bcrypt.hash(req.body.password, salt);
@@ -40,7 +41,8 @@ router.post('/createuser', [
           }
           const authToken = jwt.sign(data, JWT_SECRET)
 
-          res.json({ authToken })
+          success = true;
+          res.json({ success, authToken })
 
      } catch (error) {
           console.error(error.message);
@@ -56,6 +58,7 @@ router.post('/login', [
 ], async (req, res) => {
 
      const errors = validationResult(req);
+     let success = false;
      if (!errors.isEmpty()) {
           return res.status(400).json({ errors: errors.array() })
      }
@@ -65,6 +68,7 @@ router.post('/login', [
           let user = await User.findOne({ email });
           if (!user) {
                return res.status(400).json({
+                    success,
                     error:
                          "Please login with correct credentials"
                })
@@ -74,6 +78,7 @@ router.post('/login', [
 
           if (!passwordToCompare) {
                return res.status(400).json({
+                    success,
                     error:
                          "Please login with correct credentials"
                })
@@ -85,7 +90,8 @@ router.post('/login', [
                }
           }
           const authToken = jwt.sign(data, JWT_SECRET)
-          res.send(authToken);
+          success = true;
+          res.send({ success, authToken });
 
      } catch (error) {
           console.error(error.message);

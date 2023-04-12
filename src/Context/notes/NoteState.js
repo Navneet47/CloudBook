@@ -12,7 +12,7 @@ const NoteState = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQyZTZhN2E3ODY2YmFhMDAyNjk0YjVlIn0sImlhdCI6MTY4MDc2NzEwMX0.UVswb79L-lLPgJSEPf9TR_yHX2Ulq8fouX5tkCVtZlk'
+        'auth-token': localStorage.getItem('token')
       },
     });
     const json = await response.json();
@@ -26,7 +26,7 @@ const NoteState = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQyZTZhN2E3ODY2YmFhMDAyNjk0YjVlIn0sImlhdCI6MTY4MDc2NzEwMX0.UVswb79L-lLPgJSEPf9TR_yHX2Ulq8fouX5tkCVtZlk'
+        'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({ title, description, tag })
     });
@@ -41,10 +41,12 @@ const NoteState = (props) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQyZTZhN2E3ODY2YmFhMDAyNjk0YjVlIn0sImlhdCI6MTY4MDc2NzEwMX0.UVswb79L-lLPgJSEPf9TR_yHX2Ulq8fouX5tkCVtZlk'
+        'auth-token': localStorage.getItem('token')
       },
     });
     const json = await response.json()
+    console.log(json);
+    console.clear();
     const newNote = notes.filter((note) => {
       return note._id !== id
     })
@@ -60,12 +62,13 @@ const NoteState = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQyZTZhN2E3ODY2YmFhMDAyNjk0YjVlIn0sImlhdCI6MTY4MDc2NzEwMX0.UVswb79L-lLPgJSEPf9TR_yHX2Ulq8fouX5tkCVtZlk'
+        'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({ title, description, tag })
     });
     const json = await response.json()
-
+     console.log(json);
+    console.clear();
     let newNotes = JSON.parse(JSON.stringify(notes))
 
     for (let i = 0; i < newNotes.length; i++) {

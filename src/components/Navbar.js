@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 
 const Navbar = ()=>{
+      let history = useNavigate();
+  const handleLog = ()=>{
+      localStorage.removeItem('token');
+      history('/login')
+  }
 
   let location = useLocation();
 
@@ -23,10 +28,10 @@ const Navbar = ()=>{
           <Link className={`nav-link ${location.pathname === "/about" ? 'active' :""}`} to="/about">About</Link>
         </li>
       </ul>
-      <form className="d-flex">
-        <input  name='query' className="form-control me-2" type="text" placeholder="Search news" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      {localStorage.getItem('token')? <button onClick={handleLog} className='btn btn-outline-success'>Logout</button>:<form className="d-flex">
+        <Link className="btn btn-outline-success mx-1" role='button' to="/login">Login</Link>
+        <Link className="btn btn-outline-success mx-1" role='button' to="/register">Register</Link>
+      </form>}
     </div>
   </div>
 </nav>

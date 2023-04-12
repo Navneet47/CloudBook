@@ -3,17 +3,24 @@ import noteContext from '../Context/notes/noteContext';
 import NoteItem from './NoteItem';
 import AddNote from './AddNote';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Notes() {
+function Notes(props) {
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
+    let history = useNavigate();
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            getNotes()
+        }else{
+           history('/login')
+        }
+    }, []);
+    
     const [note, setNote] = useState({ id:"", etitle: '', edescription: "", etag: '' })
     const ref = useRef(null)
     const refClose = useRef(null)
 
-    useEffect(() => {
-        getNotes()
-    }, []);
 
     const updateNote = (currentNote) => {
         ref.current.click()
@@ -24,6 +31,7 @@ function Notes() {
         e.preventDefault();
        editNote(note.id,note.etitle,note.edescription,note.etag)
        refClose.current.click();
+       props.showAlert('Updates Successfully','success')
     }
 
     function handleChange(e) {
@@ -31,7 +39,7 @@ function Notes() {
     }
     return (
         <>
-            <AddNote />
+            <AddNote showAlert={props.showAlert} />
             <button style={{display:'none'}} type="button" className="btn btn-primary" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Edit
             </button>
@@ -71,7 +79,7 @@ function Notes() {
                 {notes.length === 0 && 'No notes to display'}
                 </div>
                 {notes.map((note, id) => {
-                    return <NoteItem key={id} updateNote={updateNote} note={note} />
+                    return <NoteItem showAlert={props.showAlert} key={id} updateNote={updateNote} note={note} />
                 })}
             </div>
         </>
