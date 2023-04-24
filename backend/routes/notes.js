@@ -99,5 +99,22 @@ router.delete('/deletenote/:id', fetchUser, async (req, res) => {
 
 })
 
+router.get('/getnote/:id', fetchUser, async (req, res) => {
+     try {
+          // Find note to be delete and delete it
+          let note = await Note.findById(req.params.id);
+          if (!note) {
+               return res.status(404).send("Not Found")
+          }
+          // note = await Note.findByIdAndDelete(req.params.id);
+          note = await Note.findById(req.params.id)
+          res.json({note});
+     } catch (error) {
+          console.error(error.message);
+          res.status(500).send("Cannot Get Note! Internal server Error");
+     }
+
+})
+
 
 module.exports = router;

@@ -4,7 +4,7 @@ import noteContext from "./noteContext";
 const NoteState = (props) => {
   const host = "http://localhost:5000";
   const initialState = []
-  const [notes, setNotes] = useState(initialState)
+  const [notes, setNotes] = useState(initialState);
 
   // Get all notes
   async function getNotes() {
@@ -69,6 +69,7 @@ const NoteState = (props) => {
     const json = await response.json()
      console.log(json);
     console.clear();
+
     let newNotes = JSON.parse(JSON.stringify(notes))
 
     for (let i = 0; i < newNotes.length; i++) {

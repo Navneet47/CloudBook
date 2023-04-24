@@ -10,6 +10,13 @@ function Register(props) {
     })
     let history = useNavigate();
 
+    const capitalize = (word)=>{
+        if(word==='danger'){
+          word='error'
+        }
+        const lower = word.toLowerCase();
+        return lower.charAt(0).toUpperCase() + lower.slice(1);
+      }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,7 +31,7 @@ function Register(props) {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ name: user.name, email: user.email, password: user.password })
+                    body: JSON.stringify({ name: capitalize(user.name), email: user.email, password: user.password })
                 });
                 const json = await response.json();
                 if (json.success) {

@@ -9,18 +9,19 @@ function Notes(props) {
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
     let history = useNavigate();
+
     useEffect(() => {
         if(localStorage.getItem('token')){
             getNotes()
         }else{
            history('/login')
         }
+        // eslint-disable-next-line
     }, []);
     
-    const [note, setNote] = useState({ id:"", etitle: '', edescription: "", etag: '' })
-    const ref = useRef(null)
-    const refClose = useRef(null)
-
+    const [note, setNote] = useState({ id:"", etitle: '', edescription: "", etag: '' });
+    const ref = useRef(null);
+    const refClose = useRef(null);
 
     const updateNote = (currentNote) => {
         ref.current.click()
@@ -58,7 +59,7 @@ function Notes(props) {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
-                                    <input minLength={10} required type="text" name='edescription' className="form-control" value={note.edescription} id="edescription" onChange={handleChange} />
+                                    <textarea rows={10} cols={10} minLength={10} required type="text" name='edescription' className="form-control" value={note.edescription} id="edescription" onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tag</label>
