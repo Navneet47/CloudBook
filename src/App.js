@@ -7,6 +7,8 @@ import NoteState from "./Context/notes/NoteState";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Alert from "./components/Alert";
+import Footer from "./components/Footer";
+
 function App() {
   const [alert,setAlert] = useState(null);
 
@@ -34,6 +36,7 @@ function App() {
       </Routes>
       </div>
       </NoteState>
+      <Footer/>
     </div>
   );
 }

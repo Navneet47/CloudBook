@@ -7,7 +7,7 @@ function NoteItem(props) {
   const { deleteNote } = context;
   const { note, updateNote } = props
   return (
-    <div className='col-md-3'>
+    <div className='col-md-3 mb-5'>
       <div className="card my-3">
         <div className="card-body">
           <h5 className="card-title">{note.title.length > 15 ? note.title.slice(0,15) + "..." : note.title}</h5>

@@ -75,10 +75,7 @@ function Notes(props) {
                 </div>
             </div>
             <div className=" row my-3">
-                <h2>Your Notes</h2>
-                <div className="container">
-                {notes.length === 0 && 'No notes to display'}
-                </div>
+                <h2>{notes.length === 0 ? 'No notes to display' : 'Your Notes'}</h2>
                 {notes.map((note, id) => {
                     return <NoteItem showAlert={props.showAlert} key={id} updateNote={updateNote} note={note} />
                 })}
