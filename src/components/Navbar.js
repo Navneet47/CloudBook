@@ -17,7 +17,7 @@ const Navbar = (props) => {
   }
 
   const userDetails = async () => {
-    const response = await fetch("http://localhost:5000/api/auth/getuser", {
+    const response = await fetch("https://cb-gyo4hhhve-navneet47.vercel.app/api/auth/getuser", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
