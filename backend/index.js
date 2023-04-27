@@ -12,9 +12,16 @@ app.use(cors());
 //Available Routes
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/notes',require('./routes/notes'));
-app.get('/',(req,res)=>{
-    res.send("Hello World");
-})
+
+
+if(process.env.NODE_ENV === 'production'){
+    const path = require('path');
+
+    app.get('/',(req,res)=>{
+          app.use(express.static(path.resolve(__dirname,'build')))
+          res.sendFile(path.resolve(__dirname,'build','index.html'))
+    })
+}
 
 app.listen(port,()=>{
     console.log(`Listening at port ${port}`);

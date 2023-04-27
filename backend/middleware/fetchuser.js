@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = 'GoodForNothing';
+// const JWT_SECRET = 'GoodForNothing';
+const {JWT_SECRET} = require('../config/keys');
 
 
 function fetchUser (req,res,next){

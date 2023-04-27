@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+const {MONGODB_URL} = require('./config/keys');
 
 // const mongoUri = "mongodb://localhost:27017/notebook"
 // const connectToMongo = ()=>{
 //     mongoose.connect(mongoUri);
 // }
 
-const MONGODB_URL = "mongodb+srv://sharmanavneet125:nVqE7MLSKZ01nFGm@cluster0.harq6a3.mongodb.net/notebook?retryWrites=true&w=majority";
+// const MONGODB_URL = "mongodb+srv://sharmanavneet125:nVqE7MLSKZ01nFGm@cluster0.harq6a3.mongodb.net/notebook?retryWrites=true&w=majority";
 
 if(!MONGODB_URL){
     throw new Error("Please define the MONGODB_URL");
