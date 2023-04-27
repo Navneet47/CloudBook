@@ -12,6 +12,10 @@ import Footer from "./components/Footer";
 function App() {
   const [alert,setAlert] = useState(null);
 
+  const [dark,setDark] = useState(true);
+
+  let body = document.querySelector(".body-s");
+
   const showAlert = (message,type)=>{
     setAlert({
       msg:message,
@@ -22,10 +26,24 @@ function App() {
     }, 2000)
   }
 
+  const handleClick = ()=>{
+    setDark(!dark);
+    if(dark){
+      body.classList.add("bg-body-tertiary");
+      body.classList.add("bg-dark");
+      body.setAttribute("data-bs-theme","dark");
+    }
+    if(!dark){
+      body.classList.remove("bg-body-tertiary");
+      body.classList.remove("bg-dark");
+      body.removeAttribute("data-bs-theme");
+    }
+  }
+
   return (
-    <div className="App">
+    <div className="App" >
       <NoteState>
-      <Navbar />
+      <Navbar handleClick = {handleClick} />
       <Alert alert={alert}/>
       <div className="container">
       <Routes>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 
-const Navbar = () => {
+const Navbar = (props) => {
   let history = useNavigate();
 
   const [userProfile, setProfile] = useState({
@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className=" navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+      <nav className=" navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom" data-bs-theme="dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">CloudBook</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,6 +83,7 @@ const Navbar = () => {
               <Link className="btn btn-outline-success mx-1" role='button' to="/login">Login</Link>
               <Link className="btn btn-outline-success mx-1" role='button' to="/register">Register</Link>
             </form>}
+            <button className="btn btn-warning mx-1" onClick={props.handleClick}>Dark</button>
           </div>
         </div>
       </nav>

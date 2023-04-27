@@ -55,11 +55,11 @@ function Notes(props) {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input minLength={5} required type="text" name='etitle' className="form-control" value={note.etitle} id="etitle" onChange={handleChange} />
+                                    <input  required type="text" name='etitle' className="form-control" value={note.etitle} id="etitle" onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
-                                    <textarea rows={10} cols={10} minLength={10} required type="text" name='edescription' className="form-control" value={note.edescription} id="edescription" onChange={handleChange} />
+                                    <textarea rows={10} cols={10}  required type="text" name='edescription' className="form-control" value={note.edescription} id="edescription" onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tag</label>
@@ -69,7 +69,7 @@ function Notes(props) {
                         </div>
                         <div className="modal-footer">
                             <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button disabled={note.etitle.length < 5 || note.edescription.length < 10} type="button" className="btn btn-primary" onClick={handleClick}>Update Note</button>
+                            <button type="button" className="btn btn-primary" onClick={handleClick}>Update Note</button>
                         </div>
                     </div>
                 </div>

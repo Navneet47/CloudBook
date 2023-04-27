@@ -5,7 +5,7 @@ function Footer() {
 
     return (
         <div className="container">
-            <footer className="top-footer d-flex flex-wrap justify-content-between align-items-center py-auto mt-auto border-top bg-body-tertiary bg-dark fixed-bottom" data-bs-theme="dark">
+            <footer className="top-footer d-flex flex-wrap justify-content-between align-items-center py-auto border-top bg-body-tertiary bg-dark fixed-bottom" data-bs-theme="dark">
                 <div className="col-md-4 d-flex align-items-center">
                     <span className="mb-1 mb-md-0 text-body-secondary">&copy; 2023 CloudBook</span>
                 </div>
